@@ -5,10 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="57975bcb-6eff-4100-83c7-f7a6536a863d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/authRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/authRoutes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/dbUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/dbUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/GmailApiService.js" beforeDir="false" afterPath="$PROJECT_DIR$/services/GmailApiService.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,7 +57,7 @@
       <workItem from="1708097745278" duration="1949000" />
       <workItem from="1708115545868" duration="5656000" />
       <workItem from="1708121649409" duration="15868000" />
-      <workItem from="1708195595117" duration="3089000" />
+      <workItem from="1708195595117" duration="3227000" />
     </task>
     <servers />
   </component>

@@ -106,14 +106,11 @@ class GmailApiService {
 
             bodyContent = Buffer.from(payload.body.data, 'base64').toString('utf-8');
         } else if (payload.parts) {
-            // Multipart email, iterate through each part
             payload.parts.forEach(part => {
                 if (part.mimeType === 'text/plain' || part.mimeType === 'text/html') {
-                    // Decode the body data from base64
                     const partContent = Buffer.from(part.body.data, 'base64').toString('utf-8');
-                    bodyContent += partContent + '\n'; // Concatenate multiple parts with a newline
+                    bodyContent += partContent + '\n';
                 }
-                // Recursively get content from nested parts (if any)
                 if (part.parts) {
                     bodyContent += this.getBodyContent(part) + '\n';
                 }
