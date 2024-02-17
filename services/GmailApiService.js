@@ -66,7 +66,6 @@ class GmailApiService {
     }
 
     parseEmailData(rawEmailData) {
-        // Initialize an object to store the parsed email data
         const email = {
             id: rawEmailData.id,
             threadId: rawEmailData.threadId,
@@ -79,7 +78,6 @@ class GmailApiService {
             receivedAt: ''
         };
 
-        // Extract headers
         const headers = rawEmailData.payload.headers;
         headers.forEach(header => {
             if (header.name === 'From') {
