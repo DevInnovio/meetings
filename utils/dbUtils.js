@@ -3,7 +3,6 @@ const User = require('../models/Users'); // Adjust the path to your User model a
 const mongoose = require('mongoose');
 
 async function checkOrCreateCollection(collectionName) {
-    // Ensure mongoose is connected
     if (mongoose.connection.readyState !== 1) {
         console.log('Mongoose is not connected to the database.');
         return;
@@ -11,10 +10,8 @@ async function checkOrCreateCollection(collectionName) {
 
     const db = mongoose.connection.db;
 
-    // Check if the collection exists
     const collections = await db.listCollections({ name: collectionName }).toArray();
     if (collections.length === 0) {
-        // Collection does not exist, create it
         await db.createCollection(collectionName);
         console.log(`Collection ${collectionName} created.`);
     } else {
@@ -31,25 +28,22 @@ async function getLastEmailTimestamp(emailAddress) {
 
     const db = mongoose.connection.db;
 
-    // Use the email address as the collection name
     const collectionName = emailAddress;
 
-    // Check if the collection exists
     const collections = await db.listCollections({ name: collectionName }).toArray();
     if (collections.length === 0) {
         console.log(`Collection ${collectionName} does not exist.`);
         return null; // Return null if the collection doesn't exist
     }
 
-    // If the collection exists, query the latest email
     const collection = db.collection(collectionName);
     const latestEmail = await collection.find().sort({ receivedAt: -1 }).limit(1).toArray();
 
     if (latestEmail.length > 0) {
-        return latestEmail[0].receivedAt; // Return the timestamp of the latest email
+        return latestEmail[0].receivedAt;
     } else {
         console.log(`No emails found in ${collectionName}.`);
-        return null; // Return null if no emails are found
+        return null;
     }
 }
 
@@ -61,21 +55,17 @@ async function getLastEmailTimestamp(emailAddress) {
  */
 async function getAccessTokenByEmail(emailAddress) {
     try {
-        // Find the user document with the matching email address
         const user = await User.findOne({email: emailAddress});
 
         if (user) {
-            // User found, return the access token
             return user.accessToken;
         } else {
-            // No user found with the given email address
             console.log(`No user found with email: ${emailAddress}`);
             return null;
         }
     } catch (error) {
-        // Log and rethrow any errors encountered during the database query
         console.error(`Error fetching access token for email ${emailAddress}:`, error);
-        throw error; // Rethrowing the error allows calling functions to handle it as needed
+        throw error;
     }
 }
 
